@@ -1,0 +1,316 @@
+<div class="service-checker">
+  <div class="checker-heading">
+    <p class="eyebrow">CHECK YOUR LOCATION</p>
+    <h3>Do we service your area?</h3>
+    <p>Enter your ZIP code to see whether your property is within our standard service radius.</p>
+  </div>
+
+  <form id="service-area-form" class="checker-form">
+    <label for="service-zip">Your ZIP code</label>
+    <div class="input-row">
+      <input
+        id="service-zip"
+        name="zip"
+        type="text"
+        inputmode="numeric"
+        autocomplete="postal-code"
+        maxlength="5"
+        pattern="[0-9]{5}"
+        placeholder="e.g. 98057"
+        required
+      />
+      <button type="submit">Check Availability</button>
+    </div>
+  </form>
+
+  <div id="service-result" class="service-result" aria-live="polite" hidden>
+    <h4 id="result-title"></h4>
+    <p id="result-message"></p>
+    <a href="/contact/" class="result-link">Request a Free Estimate</a>
+  </div>
+
+  <p class="checker-note">
+    Service eligibility is estimated using the ZIP code's geographic center
+    and a 100-mile radius from Renton, Washington. Actual availability may
+    vary by project.
+  </p>
+</div>
+
+<script lang="ts">
+
+    document.addEventListener("submit", async (event) => {
+    const form = event.target;
+
+    // Only handle our service-area form
+    if (!form || form.id !== "service-area-form") return;
+
+    // Stop the browser from refreshing the page
+    event.preventDefault();
+
+    const zipInput = document.querySelector("#service-zip");
+    const result = document.querySelector("#service-result");
+    const resultTitle = document.querySelector("#result-title");
+    const resultMessage = document.querySelector("#result-message");
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    if (!zipInput || !result || !resultTitle || !resultMessage || !submitButton) {
+        console.error("Service area checker: One or more form elements are missing.");
+        return;
+    }
+
+    const zip = zipInput.value.trim();
+
+    // Validate ZIP code
+    if (!/^\d{5}$/.test(zip)) {
+        showResult(
+        "Please enter a valid ZIP code",
+        "Enter a five-digit US ZIP code and try again.",
+        "outside"
+        );
+        return;
+    }
+
+    result.hidden = true;
+    submitButton.disabled = true;
+    submitButton.textContent = "Checking...";
+
+    try {
+        const response = await fetch(
+        `https://api.zippopotam.us/us/${encodeURIComponent(zip)}`
+        );
+
+        if (!response.ok) {
+        throw new Error("ZIP code not found.");
+        }
+
+        const data = await response.json();
+        const place = data.places?.[0];
+
+        if (!place) {
+        throw new Error("Location information unavailable.");
+        }
+
+        const latitude = Number(place.latitude);
+        const longitude = Number(place.longitude);
+
+        if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
+        throw new Error("Invalid location coordinates.");
+        }
+
+        const distance = distanceMiles(
+        47.4829,
+        -122.2171,
+        latitude,
+        longitude
+        );
+
+        const city = place["place name"];
+        const state = place["state abbreviation"];
+
+        if (distance <= 100) {
+        showResult(
+            "Good news! You're within our service area.",
+            `${city}, ${state} is approximately ${Math.round(distance)} miles from Renton. Contact us to discuss your project and request a free estimate.`,
+            "covered"
+        );
+        } else {
+        showResult(
+            "You're outside our standard service radius.",
+            `${city}, ${state} is approximately ${Math.round(distance)} miles from Renton. We may still be able to help depending on your project, so feel free to contact us.`,
+            "outside"
+        );
+        }
+    } catch (error) {
+        console.error("ZIP code lookup failed:", error);
+
+        showResult(
+        "We couldn't verify that ZIP code.",
+        "Please check the ZIP code and try again. You can also contact us directly to confirm service availability.",
+        "outside"
+        );
+    } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Check Availability";
+    }
+    });
+
+    function distanceMiles(lat1, lon1, lat2, lon2) {
+    const toRadians = (degrees) => degrees * Math.PI / 180;
+    const earthRadiusMiles = 3958.8;
+
+    const dLat = toRadians(lat2 - lat1);
+    const dLon = toRadians(lon2 - lon1);
+
+    const a =
+        Math.sin(dLat / 2) ** 2 +
+        Math.cos(toRadians(lat1)) *
+        Math.cos(toRadians(lat2)) *
+        Math.sin(dLon / 2) ** 2;
+
+    return earthRadiusMiles * 2 *
+        Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    }
+
+    function showResult(title, message, status) {
+    const result = document.querySelector("#service-result");
+    const resultTitle = document.querySelector("#result-title");
+    const resultMessage = document.querySelector("#result-message");
+
+    if (!result || !resultTitle || !resultMessage) return;
+
+    result.hidden = false;
+    result.className = `service-result ${status}`;
+    resultTitle.textContent = title;
+    resultMessage.textContent = message;
+    }
+</script>
+
+<style>
+  .service-checker {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 2.5rem;
+    border: 1px solid rgba(24, 55, 46, 0.12);
+    border-radius: 12px;
+    background: #fff;
+  }
+
+  .checker-heading {
+    margin-bottom: 1.75rem;
+  }
+
+  .checker-heading .eyebrow {
+    margin: 0 0 0.65rem;
+    color: #a88e60;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+  }
+
+  .checker-heading h3 {
+    margin: 0 0 0.75rem;
+    color: #18372e;
+    font-family: "Playfair Display", serif;
+    font-size: 2rem;
+    font-weight: 500;
+  }
+
+  .checker-heading > p:last-child {
+    margin: 0;
+    color: #727b73;
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .checker-form label {
+    display: block;
+    margin-bottom: 0.55rem;
+    color: #26332d;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .input-row {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .input-row input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.95rem 1rem;
+    border: 1px solid #d8ddd8;
+    border-radius: 6px;
+    color: #26332d;
+    font: inherit;
+    font-size: 1rem;
+  }
+
+  .input-row input:focus {
+    outline: 2px solid #83b99a;
+    outline-offset: 2px;
+  }
+
+  .input-row button {
+    padding: 0.95rem 1.25rem;
+    border: 0;
+    border-radius: 6px;
+    background: #18372e;
+    color: #fff;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .input-row button:hover {
+    background: #285344;
+  }
+
+  .input-row button:disabled {
+    opacity: 0.65;
+    cursor: wait;
+  }
+
+  .service-result {
+    margin-top: 1.5rem;
+    padding: 1.25rem;
+    border-radius: 8px;
+  }
+
+  .service-result.covered {
+    background: #edf5ef;
+    border: 1px solid #b8d4c0;
+  }
+
+  .service-result.outside {
+    background: #f7f5ef;
+    border: 1px solid #ddd6c8;
+  }
+
+  .service-result h4 {
+    margin: 0 0 0.5rem;
+    color: #18372e;
+    font-size: 1.05rem;
+  }
+
+  .service-result p {
+    margin: 0 0 1rem;
+    color: #59645d;
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  .result-link {
+    color: #18372e;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .checker-note {
+    margin: 1.5rem 0 0;
+    color: #858b85;
+    font-size: 0.75rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 600px) {
+    .service-checker {
+      padding: 1.5rem;
+    }
+
+    .checker-heading h3 {
+      font-size: 1.65rem;
+    }
+
+    .input-row {
+      flex-direction: column;
+    }
+
+    .input-row button {
+      width: 100%;
+    }
+  }
+</style>

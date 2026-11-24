@@ -1,0 +1,262 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ServiceAreaChecker from "../components/ServiceAreaChecker.astro";
+---
+
+<Layout
+  title="Our Work & Service Area | Saintcalle Satisfaction LLC"
+  description="Explore our property care work and check whether your location is within our Washington service area."
+>
+  <main>
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+      <div class="container">
+        <p class="eyebrow">Our Work</p>
+        <h1>Projects & Service Area</h1>
+        <p>See the work we do and find out if we serve your area.</p>
+      </div>
+    </section>
+    <!-- OUR WORK -->
+    <section class="gallery-section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Our Work</p>
+          <h2>Good work makes a visible difference.</h2>
+        </div>
+
+        <div class="gallery-grid">
+          <figure class="gallery-large">
+            <img
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85"
+              alt="Residential exterior and landscaped property"
+              loading="lazy"
+            />
+            <figcaption>Outdoor spaces</figcaption>
+          </figure>
+
+          <figure>
+            <img
+              src="https://images.unsplash.com/photo-1603712725038-e9334ae8f39f?auto=format&fit=crop&w=900&q=85"
+              alt="Residential exterior cleaning reference"
+              loading="lazy"
+            />
+            <figcaption>Exterior care</figcaption>
+          </figure>
+
+          <figure>
+            <img
+              src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=900&q=85"
+              alt="Home improvement work reference"
+              loading="lazy"
+            />
+            <figcaption>Home improvements</figcaption>
+          </figure>
+
+          <figure>
+            <img
+              src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=85"
+              alt="Updated residential interior"
+              loading="lazy"
+            />
+            <figcaption>Interior projects</figcaption>
+          </figure>
+
+          <figure>
+            <img
+              src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=900&q=85"
+              alt="Modern plumbing and fixture reference"
+              loading="lazy"
+            />
+            <figcaption>Fixtures & repairs</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICE AREA -->
+    <section class="area-section">
+      <div class="container area-content">
+        <div class="area-copy">
+          <p class="eyebrow">Where We Work</p>
+          <h2>Local service. Personal attention.</h2>
+          <p>
+            We work with property owners across our Washington service
+            area. Contact us with your city or ZIP code so we can confirm
+            whether your project is within our coverage area.
+          </p>
+          <a class="action-button" href="/contact/">
+            Check Service Availability
+          </a>
+        </div>
+
+        <ServiceAreaChecker />
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .page-header {
+    padding: 3.5rem 0;
+    background: #18372e;
+    color: #f7f5ef;
+  }
+
+  .page-header h1 {
+    margin: 0 0 0.75rem;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 500;
+  }
+
+  .page-header > .container > p:last-child {
+    margin: 0;
+    color: rgba(247, 245, 239, 0.8);
+    line-height: 1.7;
+  }
+
+  .page-header .eyebrow {
+    margin-bottom: 0.75rem;
+  }
+
+  .gallery-section {
+    padding: 6rem 0;
+  }
+
+  .section-heading {
+    max-width: 720px;
+    margin: 0 auto 3.5rem;
+    text-align: center;
+  }
+
+  .section-heading h2,
+  .area-copy h2 {
+    margin: 0;
+    color: #18372e;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  .eyebrow {
+    margin-bottom: 1rem;
+    color: #bba477;
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    grid-template-rows: 220px 220px;
+    gap: 1rem;
+  }
+
+  .gallery-grid figure {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #18372e;
+  }
+
+  .gallery-grid .gallery-large {
+    grid-row: span 2;
+  }
+
+  .gallery-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .gallery-grid figure:hover img {
+    transform: scale(1.025);
+  }
+
+  .gallery-grid figcaption {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 2.5rem 1rem 1rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .area-section {
+    padding: 6rem 0;
+    background: #f7f5ef;
+  }
+
+  .area-content {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .area-copy > p:not(.eyebrow) {
+    margin: 1.5rem 0;
+    color: #727b73;
+    line-height: 1.8;
+  }
+
+  .action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.95rem 1.5rem;
+    border-radius: 4px;
+    background: #d8c49a;
+    color: #18372e;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .action-button:hover {
+    background: #ead9b5;
+  }
+
+  @media (max-width: 850px) {
+    .area-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .gallery-grid {
+      grid-template-rows: 180px 180px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .gallery-section,
+    .area-section {
+      padding: 4rem 0;
+    }
+
+    .gallery-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 220px 160px 160px;
+    }
+
+    .gallery-grid .gallery-large {
+      grid-column: span 2;
+      grid-row: span 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gallery-grid img,
+    .action-button {
+      transition: none;
+    }
+  }
+</style>

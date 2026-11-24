@@ -1,0 +1,846 @@
+
+---
+import Layout from "../layouts/Layout.astro";
+import ServiceAreaChecker from "../components/ServiceAreaChecker.astro";
+
+const services = [
+  {
+    number: "01",
+    title: "Landscaping & Outdoor Care",
+    description:
+      "Make the most of your outdoor space. From keeping your yard neat and presentable to tackling larger landscaping projects, we help maintain and improve the spaces around your home.",
+    includes: [
+      "Lawn and yard maintenance",
+      "Garden and outdoor-area upkeep",
+      "Seasonal property care",
+      "Outdoor improvement projects",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1200&q=85",
+    alt: "Green residential garden with carefully maintained plants",
+    slug: "landscaping",
+  },
+  {
+    number: "02",
+    title: "Pressure Washing & Exterior Cleaning",
+    description:
+      "Give your property's exterior a fresh appearance. We help remove accumulated dirt and grime from suitable outdoor surfaces, improving the look and upkeep of your property.",
+    includes: [
+      "Driveways and walkways",
+      "Outdoor concrete surfaces",
+      "Exterior surface cleaning",
+      "Residential outdoor cleaning projects",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1603712725038-e9334ae8f39f?auto=format&fit=crop&w=1200&q=85",
+    alt: "Clean residential exterior and outdoor surfaces",
+    slug: "pressure-washing",
+  },
+  {
+    number: "03",
+    title: "Handyman Services & Repairs",
+    description:
+      "Small repairs and maintenance projects deserve the same attention as larger improvements. Get help addressing those outstanding jobs around your property.",
+    includes: [
+      "General household repairs",
+      "Minor installations and fixes",
+      "Property maintenance",
+      "Custom repair projects",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1200&q=85",
+    alt: "Professional working on a home improvement project",
+    slug: "handyman",
+  },
+  {
+    number: "04",
+    title: "Gutter Cleaning & Maintenance",
+    description:
+      "Keep your property's drainage system in mind when planning seasonal maintenance. Gutter cleaning helps reduce debris buildup and supports proper water flow.",
+    includes: [
+      "Gutter debris removal",
+      "Seasonal gutter maintenance",
+      "Exterior upkeep",
+      "Property-specific maintenance requests",
+    ],
+    image: "https://images.unsplash.com/photo-1574359411659-15573a27fd0c?auto=format&fit=crop&w=1200&q=85",
+    alt: "Residential roof and exterior maintenance",
+    slug: "gutter-cleaning",
+  },
+  {
+    number: "05",
+    title: "Plumbing & Fixture Projects",
+    description:
+      "From selected fixture improvements to property-related plumbing projects, get help identifying the work needed and planning the next steps.",
+    includes: [
+      "Eligible fixture-related projects",
+      "Selected plumbing improvements",
+      "Project assessment",
+      "Repair and installation requests",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=1200&q=85",
+    alt: "Modern bathroom fixtures and plumbing",
+    slug: "plumbing",
+  },
+  {
+    number: "06",
+    title: "Remodeling & Specialty Projects",
+    description:
+      "Have a bigger idea for your property? Whether you're planning an improvement or have a project that doesn't fit a standard category, let's discuss what you have in mind.",
+    includes: [
+      "Home improvement projects",
+      "Interior and exterior upgrades",
+      "Property enhancement work",
+      "Custom project requests",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85",
+    alt: "Beautifully updated residential interior",
+    slug: "remodeling",
+  },
+];
+---
+
+<Layout
+  title="Property Maintenance & Home Improvement Services | Saintcalle Satisfaction LLC"
+  description="Explore landscaping, pressure washing, property maintenance, repairs, and home improvement services from Saintcalle Satisfaction LLC."
+>
+  <main>
+    <!-- HERO -->
+    <section class="services-hero">
+      <img
+        class="hero-image"
+        src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=90"
+        alt="Beautifully maintained residential property"
+      />
+      <div class="hero-overlay"></div>
+
+      <div class="container hero-content">
+        <p class="eyebrow">Property Care · Maintenance · Improvements</p>
+        <h1>One property. Many ways to make it better.</h1>
+        <p>
+          From outdoor maintenance and exterior cleaning to repairs and
+          home improvements, we're here to help you care for your property
+          with confidence.
+        </p>
+        <a class="action-button" href="/contact/">
+          Request a Free Estimate
+        </a>
+      </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="intro-section">
+      <div class="container intro-content">
+        <div>
+          <p class="eyebrow">Our Services</p>
+          <h2>Practical solutions for the place you call home.</h2>
+        </div>
+        <p class="intro-description">
+          Every property has different needs. Whether it's keeping your
+          outdoor spaces in shape, taking care of maintenance, or planning
+          an improvement, we take the time to understand the project and
+          help you find the right way forward.
+        </p>
+      </div>
+    </section>
+
+    <!-- SERVICE DETAILS -->
+    <section class="service-section">
+      <div class="container">
+        <div class="service-list">
+          {services.map((service) => (
+            <article class="service-item">
+              <div class="service-image">
+                <img
+                  src={service.image}
+                  alt={service.alt}
+                  loading="lazy"
+                />
+              </div>
+
+              <div class="service-copy">
+                <span class="service-number">{service.number}</span>
+                <h3>{service.title}</h3>
+                <p>{service.description}</p>
+
+                <h4>Typical project requests</h4>
+                <ul>
+                  {service.includes.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+
+                <a
+                  class="text-link"
+                  href={`/contact/?service=${service.slug}`}
+                >
+                  Discuss your project <span>→</span>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- SEASONAL CARE -->
+    <section class="seasonal-section">
+      <div class="container seasonal-content">
+        <div>
+          <p class="eyebrow">Year-Round Property Care</p>
+          <h2>Different seasons. Different property needs.</h2>
+          <p>
+            Your property needs attention throughout the year. From
+            outdoor upkeep during warmer months to exterior cleaning
+            and maintenance during colder seasons, we're here to help
+            you plan for the work ahead.
+          </p>
+          <a class="text-link" href="/contact/">
+            Tell us what you need <span>→</span>
+          </a>
+        </div>
+
+        <div class="seasonal-cards">
+          <div class="season-card">
+            <img
+              src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=800&q=85"
+              alt="Landscaped outdoor garden"
+              loading="lazy"
+            />
+            <div>
+              <span>Warmer Months</span>
+              <h3>Outdoor care & landscaping</h3>
+            </div>
+          </div>
+
+          <div class="season-card">
+            <img
+              src="https://images.unsplash.com/photo-1603712725038-e9334ae8f39f?auto=format&fit=crop&w=800&q=85"
+              alt="Residential exterior cleaning"
+              loading="lazy"
+            />
+            <div>
+              <span>Colder Months</span>
+              <h3>Exterior cleaning & maintenance</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECT GALLERY -->
+    <section class="gallery-section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Our Work</p>
+          <h2>Good work makes a visible difference.</h2>
+        </div>
+
+        <div class="gallery-grid">
+          <figure class="gallery-large">
+            <img
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85"
+              alt="Residential exterior and landscaped property"
+              loading="lazy"
+            />
+            <figcaption>Outdoor spaces</figcaption>
+          </figure>
+
+          <figure>
+            <img
+              src="https://images.unsplash.com/photo-1603712725038-e9334ae8f39f?auto=format&fit=crop&w=900&q=85"
+              alt="Residential exterior cleaning reference"
+              loading="lazy"
+            />
+            <figcaption>Exterior care</figcaption>
+          </figure>
+
+          <figure>
+            <img
+              src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=900&q=85"
+              alt="Home improvement work reference"
+              loading="lazy"
+            />
+            <figcaption>Home improvements</figcaption>
+          </figure>
+
+          <figure>
+            <img
+              src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=85"
+              alt="Updated residential interior"
+              loading="lazy"
+            />
+            <figcaption>Interior projects</figcaption>
+          </figure>
+
+          <figure>
+            <img
+              src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=900&q=85"
+              alt="Modern plumbing and fixture reference"
+              loading="lazy"
+            />
+            <figcaption>Fixtures & repairs</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICE AREA -->
+    <section class="area-section">
+      <div class="container area-content">
+        <div class="area-copy">
+          <p class="eyebrow">Where We Work</p>
+          <h2>Local service. Personal attention.</h2>
+          <p>
+            We work with property owners across our Washington service
+            area. Contact us with your city or ZIP code so we can confirm
+            whether your project is within our coverage area.
+          </p>
+          <a class="action-button" href="/contact/">
+            Check Service Availability
+          </a>
+        </div>
+        <ServiceAreaChecker />
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="process-section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">How It Works</p>
+          <h2>Getting started is simple.</h2>
+        </div>
+
+        <div class="process-grid">
+          <article>
+            <span>01</span>
+            <h3>Tell us about your project</h3>
+            <p>
+              Share the service you need, your location, and a few
+              details about the work.
+            </p>
+          </article>
+
+          <article>
+            <span>02</span>
+            <h3>Discuss your estimate</h3>
+            <p>
+              We'll review your request, clarify the project scope,
+              and discuss pricing and availability.
+            </p>
+          </article>
+
+          <article>
+            <span>03</span>
+            <h3>Plan the work</h3>
+            <p>
+              Once the details are agreed upon, we'll coordinate
+              scheduling and the next steps.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+      <div class="container">
+        <p class="eyebrow">Let's Get Started</p>
+        <h2>Have a project in mind?</h2>
+        <p>
+          Tell us what your property needs. Let's find a practical
+          way to make it happen.
+        </p>
+        <a class="action-button" href="/contact/">
+          Request a Free Estimate
+        </a>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .services-hero {
+    position: relative;
+    min-height: 540px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: #18372e;
+  }
+
+  .hero-image,
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-image {
+    object-fit: cover;
+  }
+
+  .hero-overlay {
+    background: linear-gradient(
+      90deg,
+      rgba(12, 35, 28, 0.88),
+      rgba(12, 35, 28, 0.58) 55%,
+      rgba(12, 35, 28, 0.12)
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    color: #fff;
+  }
+
+  .eyebrow {
+    margin-bottom: 1rem;
+    color: #bba477;
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .hero-content h1 {
+    max-width: 760px;
+    margin-bottom: 1.25rem;
+    color: #fff;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.035em;
+  }
+
+  .hero-content > p:not(.eyebrow) {
+    max-width: 590px;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+
+  .action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.95rem 1.5rem;
+    border-radius: 4px;
+    background: #d8c49a;
+    color: #18372e;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .action-button:hover {
+    background: #ead9b5;
+  }
+
+  .intro-section {
+    padding: 6rem 0;
+    background: #f7f5ef;
+  }
+
+  .intro-content {
+    display: grid;
+    grid-template-columns: 1fr 0.8fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .intro-content h2,
+  .section-heading h2,
+  .seasonal-content h2,
+  .area-copy h2,
+  .final-cta h2 {
+    margin: 0;
+    color: #18372e;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  .intro-description {
+    color: #727b73;
+    font-size: 1.05rem;
+    line-height: 1.9;
+  }
+
+  .service-section {
+    padding: 6rem 0;
+  }
+
+  .section-heading {
+    max-width: 720px;
+    margin: 0 auto 3.5rem;
+    text-align: center;
+  }
+
+  .section-heading > p:last-child {
+    margin-top: 1rem;
+    color: #727b73;
+    line-height: 1.8;
+  }
+
+  .service-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem 2rem;
+  }
+
+  .service-item {
+    overflow: hidden;
+    border: 1px solid rgba(24, 55, 46, 0.12);
+    border-radius: 10px;
+    background: #fff;
+  }
+
+  .service-image {
+    height: 260px;
+    overflow: hidden;
+  }
+
+  .service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .service-copy {
+    padding: 2rem;
+  }
+
+  .service-number {
+    color: #b49a6c;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  .service-copy h3 {
+    margin: 0.6rem 0 1rem;
+    color: #18372e;
+    font-family: "Playfair Display", serif;
+    font-size: 1.8rem;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+
+  .service-copy > p {
+    color: #727b73;
+    line-height: 1.8;
+  }
+
+  .service-copy h4 {
+    margin-top: 1.5rem;
+    color: #26332d;
+    font-size: 0.9rem;
+  }
+
+  .service-copy ul {
+    padding-left: 1.2rem;
+    color: #727b73;
+    line-height: 2;
+  }
+
+  .text-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #18372e;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .text-link span {
+    margin-left: 0.4rem;
+  }
+
+  .text-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .seasonal-section {
+    padding: 6rem 0;
+    background: #f7f5ef;
+  }
+
+  .seasonal-content {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .seasonal-content > div:first-child > p:not(.eyebrow) {
+    margin: 1.5rem 0;
+    color: #727b73;
+    line-height: 1.9;
+  }
+
+  .seasonal-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .season-card {
+    position: relative;
+    min-height: 330px;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #18372e;
+  }
+
+  .season-card img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .season-card::after {
+    position: absolute;
+    inset: 0;
+    content: "";
+    background: linear-gradient(transparent 35%, rgba(12, 35, 28, 0.85));
+  }
+
+  .season-card > div {
+    position: absolute;
+    z-index: 1;
+    right: 1.25rem;
+    bottom: 1.5rem;
+    left: 1.25rem;
+    color: #fff;
+  }
+
+  .season-card span {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .season-card h3 {
+    margin-top: 0.5rem;
+    font-family: "Playfair Display", serif;
+    font-size: 1.45rem;
+    font-weight: 500;
+  }
+
+  .gallery-section {
+    padding: 6rem 0;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    grid-template-rows: 220px 220px;
+    gap: 1rem;
+  }
+
+  .gallery-grid figure {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #18372e;
+  }
+
+  .gallery-grid .gallery-large {
+    grid-row: span 2;
+  }
+
+  .gallery-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .gallery-grid figure:hover img {
+    transform: scale(1.025);
+  }
+
+  .gallery-grid figcaption {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 2.5rem 1rem 1rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .area-section {
+    padding: 6rem 0;
+    background: #f7f5ef;
+  }
+
+  .area-content {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .area-copy > p:not(.eyebrow) {
+    margin: 1.5rem 0;
+    color: #727b73;
+    line-height: 1.8;
+  }
+
+  .area-note {
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+
+  .map-wrapper {
+    min-height: 400px;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #e8e7df;
+  }
+
+  .map-wrapper iframe {
+    display: block;
+    width: 100%;
+    height: 400px;
+    border: 0;
+  }
+
+  .process-section {
+    padding: 6rem 0;
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .process-grid article {
+    padding: 2rem;
+    border-top: 2px solid #d8c49a;
+  }
+
+  .process-grid article > span {
+    color: #b49a6c;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+
+  .process-grid h3 {
+    margin: 1rem 0;
+    color: #18372e;
+    font-family: "Playfair Display", serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  .process-grid p {
+    color: #727b73;
+    line-height: 1.8;
+  }
+
+  .final-cta {
+    padding: 5rem 0;
+    background: #18372e;
+    text-align: center;
+  }
+
+  .final-cta h2 {
+    color: #fff;
+  }
+
+  .final-cta > .container > p:not(.eyebrow) {
+    max-width: 560px;
+    margin: 1rem auto 2rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.8;
+  }
+
+  @media (max-width: 850px) {
+    .intro-content,
+    .seasonal-content,
+    .area-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .service-list {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .gallery-grid {
+      grid-template-rows: 180px 180px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .services-hero {
+      min-height: 500px;
+    }
+
+    .hero-content {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+
+    .intro-section,
+    .service-section,
+    .seasonal-section,
+    .gallery-section,
+    .area-section,
+    .process-section {
+      padding: 4rem 0;
+    }
+
+    .service-list,
+    .seasonal-cards,
+    .process-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .service-image {
+      height: 220px;
+    }
+
+    .gallery-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 220px 160px 160px;
+    }
+
+    .gallery-grid .gallery-large {
+      grid-column: span 2;
+      grid-row: span 1;
+    }
+
+    .map-wrapper,
+    .map-wrapper iframe {
+      min-height: 320px;
+      height: 320px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gallery-grid img,
+    .action-button {
+      transition: none;
+    }
+  }
+</style>

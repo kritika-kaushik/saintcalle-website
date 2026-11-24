@@ -1,0 +1,226 @@
+
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <main class="error-page">
+    <div class="error-content">
+      <p class="eyebrow">SAINTCALLE SATISFACTION LLC</p>
+
+      <div class="error-number">404</div>
+
+      <h1>Looks like you've<br /><em>taken a wrong turn.</em></h1>
+
+      <p class="error-message">
+        The page you're looking for may have moved, been removed,
+        or never existed. Don't worry — we're here to help you
+        find your way back.
+      </p>
+
+      <div class="error-actions">
+        <a href="/" class="primary-button">Back to Homepage</a>
+        <a href="/contact/" class="secondary-button">Contact Us</a>
+      </div>
+
+      <div class="quick-links">
+        <span>OR EXPLORE</span>
+        <a href="/services/">Our Services</a>
+        <a href="/about/">About Us</a>
+        <a href="/contact/">Get an Estimate</a>
+      </div>
+    </div>
+
+    <div class="error-decoration">
+      <div class="decoration-circle circle-one"></div>
+      <div class="decoration-circle circle-two"></div>
+      <span>YOUR PROPERTY.<br />OUR PRIORITY.</span>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .error-page {
+    position: relative;
+    min-height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 5rem 7%;
+    background: #f7f5ef;
+  }
+
+  .error-content {
+    position: relative;
+    z-index: 2;
+    max-width: 680px;
+    text-align: center;
+  }
+
+  .eyebrow {
+    color: #a88e60;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.17em;
+  }
+
+  .error-number {
+    margin: 1rem 0 0;
+    color: #18372e;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(7rem, 20vw, 12rem);
+    font-weight: 500;
+    line-height: 1;
+    opacity: 0.12;
+  }
+
+  h1 {
+    margin: -1.5rem 0 1.5rem;
+    color: #18372e;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  h1 em {
+    color: #a88e60;
+    font-weight: 400;
+  }
+
+  .error-message {
+    max-width: 510px;
+    margin: 0 auto;
+    color: #727b73;
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  .error-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .primary-button,
+  .secondary-button {
+    display: inline-block;
+    padding: 1rem 1.5rem;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s ease;
+  }
+
+  .primary-button {
+    background: #18372e;
+    color: #fff;
+  }
+
+  .primary-button:hover {
+    background: #285344;
+  }
+
+  .secondary-button {
+    border: 1px solid #18372e;
+    color: #18372e;
+  }
+
+  .secondary-button:hover {
+    background: #18372e;
+    color: #fff;
+  }
+
+  .quick-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 4rem;
+  }
+
+  .quick-links span {
+    width: 100%;
+    color: #a88e60;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+  }
+
+  .quick-links a {
+    color: #727b73;
+    font-size: 0.8rem;
+    text-decoration: none;
+  }
+
+  .quick-links a:hover {
+    color: #18372e;
+    text-decoration: underline;
+  }
+
+  /* DECORATIVE BACKGROUND */
+
+  .error-decoration {
+    position: absolute;
+    right: -100px;
+    bottom: -140px;
+    width: 400px;
+    height: 400px;
+    pointer-events: none;
+  }
+
+  .decoration-circle {
+    position: absolute;
+    border: 1px solid rgba(24,55,46,0.1);
+    border-radius: 50%;
+  }
+
+  .circle-one {
+    inset: 0;
+  }
+
+  .circle-two {
+    inset: 45px;
+  }
+
+  .error-decoration > span {
+    position: absolute;
+    right: 100px;
+    bottom: 180px;
+    color: rgba(24,55,46,0.35);
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    line-height: 1.8;
+    text-align: right;
+  }
+
+  @media (max-width: 600px) {
+    .error-page {
+      min-height: 70vh;
+      padding: 4rem 6%;
+    }
+
+    .error-actions {
+      flex-direction: column;
+    }
+
+    .error-actions a {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .quick-links {
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .error-decoration {
+      opacity: 0.4;
+    }
+  }
+</style>

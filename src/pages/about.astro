@@ -1,0 +1,551 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const team = [
+  {
+    name: "Marcus Johnson",
+    role: "Founder & Owner",
+    initials: "MJ",
+    bio: "Built Saintcalle Satisfaction around a simple idea: property care should be dependable, personal, and done with pride."
+  },
+  {
+    name: "Daniel Brooks",
+    role: "Operations Manager",
+    initials: "DB",
+    bio: "Keeps projects organized, coordinates schedules, and makes sure every job gets the attention it deserves."
+  },
+  {
+    name: "Andre Williams",
+    role: "Landscaping Lead",
+    initials: "AW",
+    bio: "Passionate about creating welcoming outdoor spaces, maintaining healthy landscapes, and bringing yards back to life."
+  },
+  {
+    name: "James Carter",
+    role: "Property Maintenance Specialist",
+    initials: "JC",
+    bio: "Enjoys tackling practical property challenges, from everyday repairs to larger home improvement projects."
+  },
+  {
+    name: "Michael Davis",
+    role: "Exterior Cleaning Specialist",
+    initials: "MD",
+    bio: "Focused on helping properties look their best through careful exterior cleaning and attention to detail."
+  },
+  {
+    name: "Sophia Bennett",
+    role: "Client Relations Coordinator",
+    initials: "SB",
+    bio: "The friendly point of contact who helps customers communicate their needs and stay informed throughout a project."
+  }
+];
+---
+
+<Layout>
+  <main>
+    <!-- HERO -->
+    <section class="about-hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="eyebrow">GET TO KNOW US</p>
+        <h1>Good people.<br /><em>Honest work.</em></h1>
+        <p>
+          We're more than a property services company. We're a small,
+          locally operated business built on pride, relationships, and
+          the belief that every property deserves care.
+        </p>
+      </div>
+    </section>
+
+    <!-- OUR STORY -->
+    <section class="story section">
+      <div class="story-image">
+        <div class="image-placeholder">
+          <span>OUR STORY PHOTO</span>
+        </div>
+        <div class="image-caption">
+          <span>Locally operated</span>
+          <span>Community focused</span>
+        </div>
+      </div>
+
+      <div class="story-content">
+        <p class="eyebrow">WHO WE ARE</p>
+        <h2>Small business roots.<br /><em>A bigger purpose.</em></h2>
+        <p>
+          Saintcalle Satisfaction LLC was built with a commitment to
+          making property care easier, more approachable, and more
+          dependable for the people we serve.
+        </p>
+        <p>
+          As a Black-owned small business based in the Renton area,
+          we're proud to bring our own perspective, work ethic, and
+          entrepreneurial spirit to the local community.
+        </p>
+        <p>
+          We believe that a successful business is about more than
+          completing a job. It's about earning trust, treating people
+          with respect, and taking genuine pride in the work we leave
+          behind.
+        </p>
+        <p>
+          Every customer relationship matters. Every project is an
+          opportunity to do good work and build something lasting.
+        </p>
+      </div>
+    </section>
+
+    <!-- BLACK OWNED -->
+    <section class="ownership">
+      <div class="ownership-inner">
+        <p class="eyebrow">PROUDLY BLACK-OWNED</p>
+        <h2>Built with purpose.<br /><em>Rooted in community.</em></h2>
+        <p>
+          Supporting a small business means supporting the people,
+          ideas, and ambitions behind it. As a Black-owned business,
+          we're proud to be part of a diverse community of entrepreneurs
+          building opportunities and creating lasting value.
+        </p>
+        <p>
+          We don't take the opportunity to serve our neighbors lightly.
+          Our goal is to grow through relationships, referrals, and
+          consistently doing right by the people who trust us with
+          their properties.
+        </p>
+        <a href="/contact/" class="ownership-link">
+          We'd love to hear from you <span>→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- VALUES -->
+    <section class="values section">
+      <div class="section-heading">
+        <p class="eyebrow">WHAT MATTERS TO US</p>
+        <h2>The values behind <em>the work.</em></h2>
+      </div>
+
+      <div class="values-grid">
+        <article class="value-card">
+          <span class="value-number">01</span>
+          <h3>Personal Accountability</h3>
+          <p>
+            We believe in taking ownership of our work and treating
+            every property with care and respect.
+          </p>
+        </article>
+
+        <article class="value-card">
+          <span class="value-number">02</span>
+          <h3>Relationships First</h3>
+          <p>
+            Good service starts with listening. We value clear
+            communication and lasting customer relationships.
+          </p>
+        </article>
+
+        <article class="value-card">
+          <span class="value-number">03</span>
+          <h3>Pride in Every Detail</h3>
+          <p>
+            Whether it's a small repair or a larger improvement,
+            we believe the details make the difference.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="team section">
+      <div class="section-heading">
+        <p class="eyebrow">THE PEOPLE BEHIND THE WORK</p>
+        <h2>Meet the <em>team.</em></h2>
+        <p>
+          Every successful project takes people who care about
+          what they do. Get to know the team behind Saintcalle.
+        </p>
+      </div>
+
+      <div class="team-grid">
+        {team.map((member) => (
+          <article class="team-card">
+            <div class="team-photo">
+              <span>{member.initials}</span>
+              <small>TEAM PHOTO</small>
+            </div>
+            <div class="team-info">
+              <h3>{member.name}</h3>
+              <p class="team-role">{member.role}</p>
+              <p class="team-bio">{member.bio}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="about-cta">
+      <p class="eyebrow">LET'S WORK TOGETHER</p>
+      <h2>Your property.<br /><em>Our priority.</em></h2>
+      <p>
+        Have a project in mind? We'd love to learn more about
+        your property and how we can help.
+      </p>
+      <a href="/contact/" class="cta-button">Request a Free Estimate</a>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  :global(body) {
+    margin: 0;
+  }
+
+  .section {
+    padding: 6rem max(6%, calc((100% - 1180px) / 2));
+  }
+
+  .eyebrow {
+    color: #a88e60;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.17em;
+    margin-bottom: 1rem;
+  }
+
+  h1, h2, h3 {
+    color: #18372e;
+  }
+
+  h1, h2 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 500;
+    line-height: 1.15;
+  }
+
+  h1 em, h2 em {
+    color: #a88e60;
+    font-weight: 400;
+  }
+
+  /* HERO */
+
+  .about-hero {
+    position: relative;
+    min-height: 440px;
+    display: flex;
+    align-items: center;
+    padding: 5rem 8%;
+    background:
+      linear-gradient(90deg, rgba(18, 43, 35, 0.96), rgba(18, 43, 35, 0.65)),
+      linear-gradient(135deg, #40594c, #18372e);
+  }
+
+  .hero-content {
+    position: relative;
+    max-width: 680px;
+    z-index: 1;
+  }
+
+  .hero-content .eyebrow {
+    color: #d8c49a;
+  }
+
+  .hero-content h1 {
+    color: #fff;
+    font-size: clamp(3rem, 6vw, 5rem);
+    margin: 0 0 1.5rem;
+  }
+
+  .hero-content h1 em {
+    color: #d8c49a;
+  }
+
+  .hero-content > p:last-child {
+    max-width: 540px;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.8;
+    font-size: 1.05rem;
+  }
+
+  /* STORY */
+
+  .story {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    align-items: center;
+    gap: 5rem;
+  }
+
+  .image-placeholder {
+    min-height: 440px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(145deg, #d8ddd5, #aebbb0);
+    color: #52665a;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+  }
+
+  .image-caption {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 0.85rem;
+    color: #727b73;
+    font-size: 0.75rem;
+  }
+
+  .story-content h2,
+  .section-heading h2 {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    margin: 0 0 1.5rem;
+  }
+
+  .story-content > p:not(.eyebrow) {
+    color: #626d65;
+    font-size: 0.95rem;
+    line-height: 1.9;
+    margin-bottom: 1.1rem;
+  }
+
+  /* OWNERSHIP */
+
+  .ownership {
+    background: #18372e;
+    padding: 6rem 8%;
+    text-align: center;
+  }
+
+  .ownership-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .ownership .eyebrow {
+    color: #d8c49a;
+  }
+
+  .ownership h2 {
+    color: #fff;
+    font-size: clamp(2.5rem, 5vw, 3.7rem);
+    margin: 0 0 1.5rem;
+  }
+
+  .ownership h2 em {
+    color: #d8c49a;
+  }
+
+  .ownership-inner > p:not(.eyebrow) {
+    color: rgba(255,255,255,0.78);
+    line-height: 1.9;
+    font-size: 0.95rem;
+  }
+
+  .ownership-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    color: #d8c49a;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .ownership-link span {
+    margin-left: 0.5rem;
+  }
+
+  /* VALUES */
+
+  .values {
+    background: #f7f5ef;
+  }
+
+  .section-heading {
+    max-width: 680px;
+    margin: 0 auto 3rem;
+    text-align: center;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .value-card {
+    padding: 2rem;
+    background: #fff;
+    border: 1px solid rgba(24,55,46,0.09);
+  }
+
+  .value-number {
+    color: #a88e60;
+    font-family: "Playfair Display", serif;
+    font-size: 1.8rem;
+  }
+
+  .value-card h3 {
+    margin: 1rem 0 0.75rem;
+    font-family: "Playfair Display", serif;
+    font-size: 1.35rem;
+    font-weight: 500;
+  }
+
+  .value-card p {
+    color: #727b73;
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+
+  /* TEAM */
+
+  .team {
+    background: #fff;
+  }
+
+  .team .section-heading > p {
+    color: #727b73;
+    line-height: 1.7;
+    font-size: 1.5rem;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .team-card {
+    overflow: hidden;
+    border: 1px solid rgba(24,55,46,0.1);
+    background: #fff;
+  }
+
+  .team-photo {
+    position: relative;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, #d9ded7, #aab9ad);
+  }
+
+  .team-photo span {
+    color: rgba(24,55,46,0.65);
+    font-family: "Playfair Display", serif;
+    font-size: 4rem;
+  }
+
+  .team-photo small {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    color: rgba(24,55,46,0.65);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+  }
+
+  .team-info {
+    padding: 1.5rem;
+  }
+
+  .team-info h3 {
+    margin: 0 0 0.35rem;
+    font-family: "Playfair Display", serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+
+  .team-role {
+    margin: 0 0 1rem;
+    color: #a88e60;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .team-bio {
+    margin: 0;
+    color: #727b73;
+    font-size: 0.85rem;
+    line-height: 1.75;
+  }
+
+  /* CTA */
+
+  .about-cta {
+    padding: 5.5rem 8%;
+    background: #f7f5ef;
+    text-align: center;
+  }
+
+  .about-cta h2 {
+    margin: 0 0 1rem;
+    font-size: clamp(2.5rem, 5vw, 3.7rem);
+  }
+
+  .about-cta > p:not(.eyebrow) {
+    max-width: 520px;
+    margin: 0 auto 2rem;
+    color: #727b73;
+    line-height: 1.8;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 1rem 1.6rem;
+    border-radius: 5px;
+    background: #18372e;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .cta-button:hover {
+    background: #285344;
+  }
+
+  /* RESPONSIVE */
+
+  @media (max-width: 850px) {
+    .story {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .values-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .team-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .section {
+      padding: 4rem 6%;
+    }
+
+    .about-hero {
+      min-height: 380px;
+      padding: 4rem 7%;
+    }
+
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .ownership {
+      padding: 4rem 7%;
+    }
+
+    .image-placeholder {
+      min-height: 300px;
+    }
+  }
+</style>
