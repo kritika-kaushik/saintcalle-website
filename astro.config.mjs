@@ -7,5 +7,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
-  }
+  },
+  site: 'https://kritika-kaushik.github.io',
+  base: '/saintcalle-website',
 });
